@@ -5,29 +5,29 @@ const userSchema = new mongoose.Schema({
         type: Date,
       },
       Open: {
-      type: Number,
+      type: String,
       required: true,
     },
     High: {
-      type: Number,
+      type: String,
       required: true,
     },
     Low: {
-      type: Number,
+      type: String,
       required: true,
     },
     Close: {
-      type: Number,
+      type: String,
       required: true,
     },
     Volume: {
-      type: Number,
+      type: String,
       required: true,
     },
     createdDate: { type: Date, default: Date.now },
   });
   
-  const visualizeData = mongoose.model("users", userSchema);
+  const visualizeData = mongoose.model("visualizeData", userSchema);
   
   exports.visualizeData = visualizeData;
   
