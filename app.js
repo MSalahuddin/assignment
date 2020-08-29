@@ -5,10 +5,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require("mongoose");
 const cors = require("cors")
+var io = require("socket.io")();
 
 var indexRouter = require('./routes/index');
 var app = express();
 
+let socketInterval;
+app.io = io;
 
 mongoose
   .connect(
@@ -34,6 +37,20 @@ app.use('/api', indexRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
+});
+
+
+app.io.on("connection", async function (client) {
+  console.log("New client connected");
+  if (socketInterval) {
+    clearInterval(socketInterval);
+  }
+  require("./sockets/visualizeData")(client);
+
+  client.on("disconnect", function () {
+    console.log("Client disconnected");
+    clearInterval(socketInterval);
+  });
 });
 
 // error handler
