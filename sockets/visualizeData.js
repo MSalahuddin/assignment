@@ -7,25 +7,13 @@ module.exports = function (socket) {
   let Low = [];
   let Close = [];
   let Volume = [];
-  let openVal = 2;
-  let hignVal = 5;
-  let lowVal = 10;
-  let closeVal = 15;
-  let vloumeVal = 20;
-
     setInterval(async ()=>{
       let date = Date.now();
-      openVal++;
-      hignVal++;
-      lowVal++;
-      closeVal++;
-      vloumeVal++;
-      console.log()
-      Open.push({x: date, y: openVal});
-      High.push({x: date, y: hignVal});
-      Low.push({x: date, y: lowVal});
-      Close.push({x: date, y: closeVal});
-      Volume.push({x: date, y: vloumeVal});
+      Open.push({x: date, y: Math.floor((Math.random() * 3121231))});
+      High.push({x: date, y: Math.floor((Math.random() * 36765))});
+      Low.push({x: date, y: Math.floor((Math.random() * 8756754))});
+      Close.push({x: date, y: Math.floor((Math.random() * 909098))});
+      Volume.push({x: date, y: Math.floor((Math.random() * 12345631))});
       let data = {
         Open,
         High, 
@@ -34,5 +22,5 @@ module.exports = function (socket) {
         Volume
       }
       socket.emit('visualizeData', data);
-    },10000)
+    },3000)
 };
