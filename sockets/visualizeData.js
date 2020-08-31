@@ -11,7 +11,7 @@ module.exports = async function (socket) {
  
  let responseData = await getThirdPartyCall();
  setInterval(async ()=>{
-   index++
+  index++
    index == responseData.data.length ? index = 0 : index
    let obj = responseData.data[index]
    Open.push({x: obj.date, y: obj.open});
